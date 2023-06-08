@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+</head>
+<body>
+<h1>Все Поттероманы</h1>
+<div>
+    <table border="3">
+        <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Почта</th>
+            <th scope="col">Роль</th>
+            <th scope="col">Изменить</th>
+            <th scope="col">Посмотреть</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${admin}">
+            <td th:text="${user.getUserName()}">user</td>
+            <td th:text="${user.getLastName()}">user</td>
+            <td th:text="${user.getAge()}">user</td>
+            <td th:text="${user.getPassword()}">user</td>
+            <td th:text="${user.getEmail()}">user</td>
+            <td th:switch="${#lists.size(user.getRoles())}">
+                <span th:case="'1'"
+                      th:text="${user.getRoles().get(0).getRole()}"></span>
+                <span th:case="'2'"
+                      th:text="${user.getRoles().get(0).getRole() + ', ' + user.getRoles().get(1).getRole()}"></span>
+            </td>
+            <td>
+                <button><a th:href="@{/hello/admin/{id}/editUser(id=${user.getId()})}">Выпить оборотное зелье</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/hello/admin/{id}/showUser(id=${user.getId()})}">Заглянуть в шар прорицаний</a>
+                </button>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/hello/admin/{id}/delete(id=${user.getId()})}">
+                    <input type="submit" value="Avada Kedavra!"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Выйти из аккаунта"/>
+    </form>
+</div>
+<br>
+<a href="/hello"><h3>Косой переулок</h3></a>
+</body>
+</html>

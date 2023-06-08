@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+<h1>Косой переулок</h1>
+<hr>
+<br>
+<div sec:authorize="isAnonymous()"><a href="/hello/showUser"><h3>Войти в аккаунт Поттеромана</h3></a><br></div>
+
+<div sec:authorize="isAnonymous()"><a href="/hello/newUser"><h3>Зарегестрировать нового Поттеромана</h3></a><br></div>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')"><a href="/hello/admin"><h3>Панель Администратора</h3></a><br></div>
+
+<div sec:authorize="isAuthenticated()"><a href="/hello/showUser"><h3>Информация о Поттеромане</h3></a><br></div>
+</body>
+</html>

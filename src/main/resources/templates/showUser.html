@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+</head>
+<body>
+<h1>Поттероман</h1>
+<div>
+    <table border="3">
+        <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Почта</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="users: ${user}">
+            <td th:text="${users.getUserName()}">user</td>
+            <td th:text="${users.getLastName()}">user</td>
+            <td th:text="${users.getAge()}">user</td>
+            <td th:text="${users.getPassword()}">user</td>
+            <td th:text="${users.getEmail()}">user</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/>
+<br>
+<div>
+    <a href="/logout">Выйти из аккаунта</a><br>
+</div>
+<a href="/hello"><h3>Косой переулок</h3></a>
+</body>
+</html>
