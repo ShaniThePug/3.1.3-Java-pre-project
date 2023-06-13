@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.RoleServiceImpl;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
@@ -15,18 +15,18 @@ import javax.validation.Valid;
 @RequestMapping("/hello/admin")
 public class AdminController {
     private UserService userService;
-    private RoleServiceImpl roleServiceImpl;
+    private RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService, RoleServiceImpl roleServiceImpl) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
-        this.roleServiceImpl = roleServiceImpl;
+        this.roleService = roleService;
     }
 
     @GetMapping()
     public String showAllUsers(Model model) {
         model.addAttribute("admin", userService.getAllUsers());
-        model.addAttribute("roles", roleServiceImpl.findAll());
+        model.addAttribute("roles", roleService.findAll());
         return "admin";
     }
 
